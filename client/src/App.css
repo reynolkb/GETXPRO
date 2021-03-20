@@ -1,0 +1,6 @@
+.homepage-jumbo {
+  background-size: cover;
+  height: 100vh;
+  width: 60vw;
+  background-image: url('./pages/public/GetXPro_Logo.png');
+}
