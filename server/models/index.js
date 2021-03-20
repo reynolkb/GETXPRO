@@ -1,4 +1,6 @@
-const Checklist = require('./Checklist');
 const User = require('./User');
+const Palette = require('./Palette');
+const Tag = require('./Tag');
+const DonationTier = require('./DonationTier');
 
-module.exports = {User, Checklist};
+module.exports = {User, Palette, Tag, DonationTier};
