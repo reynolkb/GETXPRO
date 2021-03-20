@@ -1,0 +1,8 @@
+{
+    "appService.zipIgnorePattern": [
+        "node_modules{,/**}",
+        ".vscode{,/**}"
+    ],
+    "appService.defaultWebAppToDeploy": "/subscriptions/11656e6b-9f88-4b1e-bd5c-964902912048/resourceGroups/appsvc_linux_centralus/providers/Microsoft.Web/sites/Getxpro",
+    "appService.deploySubpath": "."
+}
