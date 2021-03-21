@@ -23,6 +23,43 @@ const resolvers = {
 			const params = username ? { username } : {};
 			return Checklist.findOne(params);
 		},
+		// stripe checkout
+		checkout: async (parent, {name}, context) => {
+			const url = new URL(context.headers.referer).origin;
+			const tier = await DonationTier.findOne({name});
+			
+			const line_items = [];
+
+			// generate product id
+			const product = await stripe.products.create({
+				name: tier.name,
+				description: tier.description
+			});
+
+			// generate price id using the product id
+			const price = await stripe.prices.create({
+				product: product.id,
+				unit_amount: tier.price * 100,
+				currency: 'usd',
+			});
+
+			// add price id to the line items array
+			line_items.push({
+				price: price.id,
+				quantity: 1
+			});
+
+			// session variable which controls success redirect and back functionality
+			const session = await stripe.checkout.sessions.create({
+				payment_method_types: ['card'],
+				line_items,
+				mode: 'payment',
+				success_url: `${url}/`,
+				cancel_url: `${url}/donation`
+			});
+			  
+			return { session: session.id }; 
+		}
     },
     Mutation: {
 		// create user

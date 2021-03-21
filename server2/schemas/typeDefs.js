@@ -19,11 +19,6 @@ const typeDefs = gql`
         jacket: Boolean
         username: String
     }
-    # authentication for user logging in/logging out
-    type Auth {
-        token: ID!
-        user: User
-    }
     type Query {
         me: User
         findChecklist(username: String!): Checklist
