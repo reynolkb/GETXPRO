@@ -55,6 +55,29 @@ const resolvers = {
 			const token = signToken(user);
 			return { token, user };
 		},
+		// create checklist
+		addChecklist: async (parent, args, context) => {
+			if (context.user) {
+				const checklist = await Checklist.create({
+					...args,
+					username: context.user.username,
+                });
+                const id = checklist._id;
+
+				await User.findByIdAndUpdate(
+                    { _id: context.user._id },
+					{ $push: { myChecklist: id } },
+					{ new: true }
+                );
+
+                console.log({checklist});
+				return checklist;
+			}
+
+			throw new AuthenticationError(
+				'You need to be logged in to create a checklist!'
+			);
+		},
     }
 };
 

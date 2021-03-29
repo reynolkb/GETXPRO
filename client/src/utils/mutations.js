@@ -35,35 +35,35 @@ export const ADD_USER = gql`
 `;
 
 // creating a palette
-export const ADD_PALETTE = gql`
-	mutation addPalette(
-        $title: String!
-        $description: String!
-        $primary: String!
-        $secondary: String!
-        $accent1: String!
-        $accent2: String!
-        $accent3: String!
+export const ADD_CHECKLIST = gql`
+	mutation addChecklist(
+        $passport: Boolean!
+        $homeInsurance: Boolean!
+        $autoInsurance: Boolean!
+        $medicalCard: Boolean!
+        $socialSecurityCard: Boolean!
+        $cash: Boolean!
+        $jacket: Boolean!
         ) {
-            addPalette(
-                title: $title
-                description: $description
-                primary: $primary
-                secondary: $secondary
-                accent1: $accent1
-                accent2: $accent2
-                accent3: $accent3
+            addChecklist(
+                passport: $passport
+                homeInsurance: $homeInsurance
+                autoInsurance: $autoInsurance
+                medicalCard: $medicalCard
+                socialSecurityCard: $socialSecurityCard
+                cash: $cash
+                jacket: $jacket
             ) {
                 _id
-                title
-                description
-                primary
-                secondary
-                accent1
-                accent2
-                accent3
+                passport
+                homeInsurance
+                autoInsurance
+                medicalCard
+                socialSecurityCard
+                cash
+                jacket
+			}
 		}
-	}
 `;
 
 // removing a palette from the user's created palettes

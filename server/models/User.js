@@ -21,10 +21,12 @@ const userSchema = new Schema({
       required: true,
       minlength: 5
     },
-    myChecklist: {
+    myChecklist: [
+      {
       type: Schema.Types.ObjectId,
       ref: 'Checklist'
-    }
+      }
+    ]
 });
   
 // set up pre-save middleware to create password
