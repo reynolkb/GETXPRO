@@ -52,7 +52,6 @@ const typeDefs = gql`
             socialSecurityCard: Boolean!
             cash: Boolean!
             jacket: Boolean!
-            # username: String!
         ): Checklist
     }
 `;

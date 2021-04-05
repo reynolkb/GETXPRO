@@ -78,6 +78,23 @@ const resolvers = {
 				'You need to be logged in to create a checklist!'
 			);
 		},
+		// edit checklist
+		editChecklist: async (parent, args, context) => {
+			if (context.user) {
+				const filter = {username: context.user.username}
+				const update = {...args}
+				const checklist = await Checklist.findOneAndUpdate(filter, update, {
+					returnOriginal: false
+				})
+
+                console.log({checklist});
+				return checklist;
+			}
+
+			throw new AuthenticationError(
+				'You need to be logged in to edit a checklist!'
+			);
+		},
     }
 };
 
