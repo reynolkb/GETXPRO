@@ -72,7 +72,7 @@ function LoginUser(props) {
         <GoogleLogin
           clientId="43051589855-j0ihpdaumb3gsbgc6la8n5gppfuvoo3u.apps.googleusercontent.com"
           render={renderProps => (
-            <button className='google-btn' onClick={renderProps.onClick} disabled={renderProps.disabled}><img className='google-logo' src="https://img.icons8.com/fluent/48/000000/google-logo.png"/><span className='google-btn-text'>CONTINUE WITH GOOGLE</span></button>
+            <button className='google-btn' onClick={renderProps.onClick} disabled={renderProps.disabled}><img className='google-logo' src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg"/><span className='google-btn-text'>CONTINUE WITH GOOGLE</span></button>
           )}
           buttonText='Continue With Google'
           onSuccess={responseGoogle}
