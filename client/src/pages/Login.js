@@ -1,9 +1,14 @@
 import React, { useState } from "react";
+import ReactDOM from 'react-dom';
+import GoogleLogin from 'react-google-login';
+import GoogleButton from 'react-google-button';
+import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props';
 import { useMutation } from "@apollo/react-hooks";
 import { Link } from "react-router-dom";
 import { LOGIN_USER } from "../utils/mutations";
 import Auth from "../utils/auth";
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+import { faFacebookF } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 function LoginUser(props) {
@@ -29,20 +34,57 @@ function LoginUser(props) {
         });
     };
 
+    const responseGoogle = (response) => {
+      console.log(response);
+    }
+
+    const componentClicked = () => {
+      console.log('clicked')
+    }
+
+    const responseFacebook = (response) => {
+      console.log(response);
+    }
+
     return (
     <div className="container my-1 login-container">
-      <div className="signup-link">
-        <Link to="/signup">
-        <FontAwesomeIcon icon={faArrowLeft}/> Go to Signup
+      <div className="home-link-container">
+        <Link to="/" className='home-link'>
+        <FontAwesomeIcon icon={faArrowLeft}/>
         </Link>
       </div>
 
-      <h2 className="login-header">Login</h2>
+      <h2 className="login-header">Welcome Back!</h2>
+      <div className='facebookLoginContainer'>
+        <FacebookLogin
+          appId="287273199513032"
+          autoLoad={true}
+          fields="name,email,picture"
+          onClick={componentClicked}
+          callback={responseFacebook}
+          render={renderProps => (
+            <button className='facebook-login-btn' onClick={renderProps.onClick}>
+              <FontAwesomeIcon className='facebook-logo' icon={faFacebookF}/> <span className='facebook-btn-text'>CONTINUE WITH FACEBOOK</span></button>
+          )}
+        />
+      </div>
+      <div className='googleLoginContainter'>
+        <GoogleLogin
+          clientId="43051589855-j0ihpdaumb3gsbgc6la8n5gppfuvoo3u.apps.googleusercontent.com"
+          render={renderProps => (
+            <button className='google-btn' onClick={renderProps.onClick} disabled={renderProps.disabled}><img className='google-logo' src="https://img.icons8.com/fluent/48/000000/google-logo.png"/><span className='google-btn-text'>CONTINUE WITH GOOGLE</span></button>
+          )}
+          buttonText='Continue With Google'
+          onSuccess={responseGoogle}
+          onFailure={responseGoogle}
+          cookiePolicy={'sinlge_host_origin'}
+        />
+      </div>
+      <h6 className='login-form-text'>OR LOG IN WITH EMAIL</h6>
       <form onSubmit={handleFormSubmit} className="login-form">
         <div className="form-div">
-          <label htmlFor="email">Email address:</label>
           <input
-            placeholder="youremail@test.com"
+            placeholder="Email Address"
             name="email"
             type="email"
             id="email"
@@ -50,9 +92,8 @@ function LoginUser(props) {
           />
         </div>
         <div className="form-div">
-          <label htmlFor="pwd">Password:</label>
           <input
-            placeholder="******"
+            placeholder="Password"
             name="password"
             type="password"
             id="pwd"
@@ -66,10 +107,15 @@ function LoginUser(props) {
         }
         <div className="flex-row">
           <button type="submit" className="btn login-btn">
-            Submit
+            LOG IN
           </button>
+          <div className='signup-text'>
+            <p>Don't have an account? <Link to='/signup' className='signup-link'>Sign Up</Link></p>
+          </div>
         </div>
       </form>
+
+      <script src="https://apis.google.com/js/platform.js" async defer></script>
     </div>
     )
 }
