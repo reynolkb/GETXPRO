@@ -79,7 +79,7 @@ input {
 
 .google-btn {
   border: rgb(189, 189, 189) solid 1px;
-  padding: 9px 16px;
+  padding: 9px 9px;
   border-radius: 20px;
   display: inline-flex;
 }
@@ -89,18 +89,21 @@ input {
   color: black;
   font-weight: bold;
   margin-top: 3px;
+  padding: 0px 10px;
 }
 
 .google-logo {
-  height: 1.3em;
-  padding-right: 20px;
+  height: 1.2em;
+  margin-right: 1em;
 }
 
-.login-form-text{
+.login-form-text,
+.signup-form-text {
   color: rgb(163, 163, 163);
 }
 
-.login-btn {
+.login-btn,
+.signup-btn {
   border-radius: 20px;
   background-color: rgb(206, 213, 253);
   font-family: inherit;
@@ -121,3 +124,22 @@ input {
   text-decoration: none;
   color: rgb(149, 149, 250);
 }
+
+/* SignUp Styling */
+
+.toggle-password-btn {
+  position: absolute;
+  top: 0;
+  right: 0px;
+  z-index: 2;
+  border: none;
+  top: 2px;
+  height: 30px;
+  cursor: pointer;
+  transform: translateX(-10px);
+}
+
+.btn-in {
+  position: relative;
+}
+
