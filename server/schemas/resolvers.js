@@ -3,7 +3,6 @@ const { AuthenticationError } = require('apollo-server-express');
 const { User, Checklist } = require('../models');
 const { signToken } = require('../utils/auth');
 const stripe = require('stripe')('sk_test_4eC39HqLyjWDarjtT1zdp7dc');
-
 const resolvers = {
     Query: {
 		// loggedIn user query to get user info
@@ -16,7 +15,6 @@ const resolvers = {
 					.populate('myChecklist')
 				return userData;
 			}
-
 			throw new AuthenticationError('Not logged in');
 		},
 		// get all palettes by username
@@ -30,29 +28,24 @@ const resolvers = {
         addUser: async (parent, args) => {
 			const user = await User.create(args);
 			const token = signToken(user);
-
 			return { token, user };
 		},
 		// login user with username and password
 		login: async (parent, { username, password }) => {
 			const user = await User.findOne({ username });
-
 			if (!user) {
 				throw new AuthenticationError(
 					'Incorrect credentials'
 				);
 			}
-
 			const correctPw = await user.isCorrectPassword(
 				password
 			);
-
 			if (!correctPw) {
 				throw new AuthenticationError(
 					'Incorrect credentials'
 				);
 			}
-
 			const token = signToken(user);
 			return { token, user };
 		},
@@ -64,17 +57,14 @@ const resolvers = {
 					username: context.user.username,
                 });
                 const id = checklist._id;
-
 				await User.findByIdAndUpdate(
                     { _id: context.user._id },
 					{ $push: { myChecklist: id } },
 					{ new: true }
                 );
-
                 console.log({checklist});
 				return checklist;
 			}
-
 			throw new AuthenticationError(
 				'You need to be logged in to create a checklist!'
 			);
@@ -84,20 +74,16 @@ const resolvers = {
 			if (context.user) {
 				const filter = {username: context.user.username}
 				const update = {...args}
-
 				const checklist = await Checklist.findOneAndUpdate(filter, update, {
 					returnOriginal: false
 				})
-
                 console.log({checklist});
 				return checklist;
 			}
-
 			throw new AuthenticationError(
 				'You need to be logged in to edit a checklist!'
 			);
 		},
     }
 };
-
 module.exports = resolvers;
