@@ -13,6 +13,7 @@ const resolvers = {
 					_id: context.user._id,
 				})
 					.select('-__v -password')
+					.populate('myChecklist')
 				return userData;
 			}
 
@@ -83,6 +84,7 @@ const resolvers = {
 			if (context.user) {
 				const filter = {username: context.user.username}
 				const update = {...args}
+
 				const checklist = await Checklist.findOneAndUpdate(filter, update, {
 					returnOriginal: false
 				})
