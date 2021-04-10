@@ -1,7 +1,7 @@
 # Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
 # More GitHub Actions for Azure: https://github.com/Azure/actions
 
-name: Build and deploy Node.js app to Azure Web App - getxpro
+name: Build and deploy Node.js app to Azure Web App - Getxpro
 
 on:
   push:
@@ -30,7 +30,7 @@ jobs:
     - name: 'Deploy to Azure Web App'
       uses: azure/webapps-deploy@v2
       with:
-        app-name: 'getxpro'
+        app-name: 'Getxpro'
         slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_030335992ad543368d0aa06370ba7e32 }}
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_d3c70567ea9a46b0af869fc0b639a00e }}
         package: .
