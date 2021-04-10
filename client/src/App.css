@@ -4,3 +4,142 @@
   width: 60vw;
   background-image: url('./pages/public/GetXPro_Logo.png');
 }
+
+.container {
+  border-radius: 1em;
+  padding: 1em;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+a:active,
+a:focus,
+button:focus,
+button:active,
+input:focus,
+input:active {
+  outline: none;
+  border: none;
+}
+
+button {
+  font-family: inherit;
+  font-size: 100%;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  margin-bottom: 3vh;
+}
+
+input {
+  border: none;
+  border-radius: 10px;
+  width: 16vw;
+  background-color: rgb(216, 215, 215);
+  font-family: inherit;
+  padding: 10px;
+  margin-bottom: 2vh;
+
+}
+
+/* Login Page Styling */
+.home-link-container {
+  margin-bottom: 10vh;
+}
+
+.home-link {
+  float: left;
+  text-decoration: none;
+  color: grey;
+  border-radius: 50px;
+  border: .13em rgb(202, 202, 202) solid;
+  padding: 10px 12px;
+}
+
+.facebook-login-btn {
+  color: white;
+  padding: 10px;
+  border-radius: 20px;
+  background-color: rgb(153, 153, 255);
+}
+
+.facebook-btn-text {
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.facebook-logo {
+  font-size: 18px;
+  padding-right: 20px;
+}
+
+.google-btn {
+  border: rgb(189, 189, 189) solid 1px;
+  padding: 9px 9px;
+  border-radius: 20px;
+  display: inline-flex;
+}
+
+.google-btn-text {
+  font-size: 12px;
+  color: black;
+  font-weight: bold;
+  margin-top: 3px;
+  padding: 0px 10px;
+}
+
+.google-logo {
+  height: 1.2em;
+  margin-right: 1em;
+}
+
+.login-form-text,
+.signup-form-text {
+  color: rgb(163, 163, 163);
+}
+
+.login-btn,
+.signup-btn {
+  border-radius: 20px;
+  background-color: rgb(206, 213, 253);
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: bold;
+  width: 18vw;
+  padding: 10px;
+}
+
+.signup-text {
+  color: rgb(163, 163, 163);
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.signup-link {
+  text-decoration: none;
+  color: rgb(149, 149, 250);
+}
+
+/* SignUp Styling */
+
+.toggle-password-btn {
+  position: absolute;
+  top: 0;
+  right: 0px;
+  z-index: 2;
+  border: none;
+  top: 2px;
+  height: 30px;
+  cursor: pointer;
+  transform: translateX(-10px);
+}
+
+.btn-in {
+  position: relative;
+}
+
