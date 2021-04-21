@@ -12,13 +12,13 @@ import { faFacebookF } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 function LoginUser(props) {
-    const [formState, setFormState] = useState({ email: '', password: '' })
+    const [formState, setFormState] = useState({ username: '', password: '' })
     const [login, { error }] = useMutation(LOGIN_USER);
 
     const handleFormSubmit = async event => {
         event.preventDefault();
         try {
-            const mutationResponse = await login({ variables: { email: formState.email, password: formState.password } })
+            const mutationResponse = await login({ variables: { username: formState.username, password: formState.password } })
             const token = mutationResponse.data.login.token;
             Auth.login(token);
         } catch (e) {
@@ -80,14 +80,14 @@ function LoginUser(props) {
           cookiePolicy={'sinlge_host_origin'}
         />
       </div>
-      <h6 className='login-form-text'>OR LOG IN WITH EMAIL</h6>
+      <h6 className='login-form-text'>OR LOG IN WITH USERNAME</h6>
       <form onSubmit={handleFormSubmit} className="login-form">
         <div className="form-div">
           <input
-            placeholder="Email Address"
-            name="email"
-            type="email"
-            id="email"
+            placeholder="Username"
+            name="username"
+            type="username"
+            id="username"
             onChange={handleChange}
           />
         </div>
