@@ -12,8 +12,9 @@ const Home = () => {
             
           <div className="homepage-jumbo">
             <object className="logo" data={Logo}></object>
-
-            <div className="homepage-text">
+          </div>
+          
+          <div className="homepage-text">
               <h3>Welcome to the Pro Club</h3>
               <p>Preparing for the unknown</p>
             </div>
@@ -25,7 +26,6 @@ const Home = () => {
             <div className='homepage-account-text'>
               <p>Already have an account? <Link to='/login' className='home-login-link'>Log In</Link></p>
             </div>
-          </div>
           
         </div>
     )

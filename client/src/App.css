@@ -47,10 +47,10 @@ input {
 
 .homepage-jumbo {
   background-size: cover;
-  height: 40em;
+  height: 65vh;
   width: 450px;
   background-repeat: no-repeat;
-  background-position: center center;
+  background-position: center 100%;
   background-image: url('./pages/public/Frame.png');
 }
 
@@ -62,10 +62,6 @@ input {
   font-weight: bold;
   width: 18vw;
   padding: 10px;
-}
-
-.homepage-text {
-  margin-top: 13em;
 }
 
 .home-signup-btn {
