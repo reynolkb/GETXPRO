@@ -13,20 +13,24 @@ const Home = () => {
           <div className="homepage-jumbo">
             <object className="logo" data={Logo}></object>
           </div>
-          
-          <div className="homepage-text">
-              <h3>Welcome to the Pro Club</h3>
-              <p>Preparing for the unknown</p>
-            </div>
-            
-            <button className="home-signup-btn btn">
-              Sign Up
-            </button>
 
-            <div className='homepage-account-text'>
-              <p>Already have an account? <Link to='/login' className='home-login-link'>Log In</Link></p>
-            </div>
-          
+        <div className='homepage-text-container'>
+          <div className="homepage-text">
+            <h3>Welcome to the Pro Club</h3>
+            <p>Preparing for the unknown</p>
+          </div>
+            
+          <div className="home-signup-btn-container">
+            <Link to='/signup' className="home-signup-btn">
+              Sign Up
+            </Link>
+          </div> 
+
+          <div className='homepage-account-text'>
+            <p>Already have an account? <Link to='/login' className='home-login-link'>Log In</Link></p>
+          </div>
+        </div>
+        
         </div>
     )
 };

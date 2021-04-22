@@ -56,21 +56,16 @@ input {
 
 .home-signup-btn {
   border-radius: 20px;
+  text-decoration: none;
+  color: black ;
   background-color: var(--homepage-color);
   font-family: inherit;
   font-size: 14px;
-  font-weight: bold;
-  width: 18vw;
   padding: 10px;
 }
 
-.home-signup-btn {
-  margin-top: 3em;
-  font-weight: normal;
-}
-
-.homepage-account-text {
-  margin-top: -2em;
+.home-signup-btn-container {
+  margin-top: 4em;
 }
 
 .home-login-link {
