@@ -48,7 +48,7 @@ input {
 .homepage-jumbo {
   background-size: cover;
   height: 65vh;
-  width: 450px;
+  width: 45vw;
   background-repeat: no-repeat;
   background-position: center 100%;
   background-image: url('./pages/public/Frame.png');
