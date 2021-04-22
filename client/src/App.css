@@ -1,5 +1,5 @@
 :root {
-  --homepage-color: rgb(199, 221, 247);
+  --homepage-color: rgb(198, 220, 228);
 }
 
 .container {
@@ -47,6 +47,7 @@ input {
 
 .homepage-jumbo {
   background-size: cover;
+  height: 40em;
   width: 450px;
   background-repeat: no-repeat;
   background-position: center center;
@@ -64,11 +65,11 @@ input {
 }
 
 .homepage-text {
-  margin-top: 18em;
+  margin-top: 13em;
 }
 
 .home-signup-btn {
-  margin-top: 5em;
+  margin-top: 3em;
   font-weight: normal;
 }
 
