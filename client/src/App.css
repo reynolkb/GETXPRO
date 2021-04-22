@@ -1,8 +1,5 @@
-.homepage-jumbo {
-  background-size: cover;
-  height: 100vh;
-  width: 60vw;
-  background-image: url('./pages/public/GetXPro_Logo.png');
+:root {
+  --homepage-color: rgb(198, 220, 228);
 }
 
 .container {
@@ -44,6 +41,37 @@ input {
   padding: 10px;
   margin-bottom: 2vh;
 
+}
+
+/* Homepage Styling */
+
+.homepage-jumbo {
+  background-size: cover;
+  height: 65vh;
+  width: 500px;
+  background-repeat: no-repeat;
+  background-position: center 100%;
+  background-image: url('./pages/public/Frame.png');
+}
+
+.home-signup-btn {
+  border-radius: 20px;
+  text-decoration: none;
+  color: black ;
+  background-color: var(--homepage-color);
+  font-family: inherit;
+  font-size: 14px;
+  padding: 10px 120px;
+}
+
+.home-signup-btn-container {
+  margin-top: 4em;
+  margin-bottom: 2em;
+}
+
+.home-login-link {
+  text-decoration: none;
+  color: var(--homepage-color);
 }
 
 /* Login Page Styling */
@@ -113,14 +141,16 @@ input {
   padding: 10px;
 }
 
-.signup-text {
+.signup-text,
+.homepage-account-text {
   color: rgb(163, 163, 163);
   font-family: inherit;
   font-size: 14px;
   font-weight: bold;
 }
 
-.signup-link {
+.signup-link,
+.login-link {
   text-decoration: none;
   color: rgb(149, 149, 250);
 }
