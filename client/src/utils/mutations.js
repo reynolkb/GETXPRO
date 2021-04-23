@@ -34,6 +34,28 @@ export const ADD_USER = gql`
 	}
 `;
 
+export const ADD_GOOGLE_USER = gql`
+	mutation addGoogleUser(
+		$username: String!
+		$email: String!
+		$password: String!
+		$googleUser: Boolean!
+	) {
+		addGoogleUser(
+			username: $username
+			email: $email
+			password: $password
+			googleUser: $googleUser
+		) {
+			token
+			user {
+				_id
+				username
+			}
+		}
+	}
+`;
+
 // creating a checklist
 export const ADD_CHECKLIST = gql`
 	mutation addChecklist(

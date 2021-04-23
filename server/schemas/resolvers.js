@@ -30,6 +30,11 @@ const resolvers = {
 			const token = signToken(user);
 			return { token, user };
 		},
+		addGoogleUser: async (parent, args) => {
+			const user = await User.create(args);
+			const token = signToken(user);
+			return { token, user };
+		},
 		// login user with username and password
 		login: async (parent, { username, password }) => {
 			const user = await User.findOne({ username });

@@ -7,6 +7,7 @@ const typeDefs = gql`
         username: String
         email: String
         myChecklist: [Checklist]
+        googleUser: Boolean
     }
     type Checklist {
         _id: ID
@@ -34,6 +35,12 @@ const typeDefs = gql`
             username: String!
             email: String!
             password: String!
+        ): Auth
+        addGoogleUser(
+            username: String!
+            email: String!
+            password: String!
+            googleUser: Boolean!
         ): Auth
         addChecklist(
             passport: Boolean!

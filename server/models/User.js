@@ -21,6 +21,9 @@ const userSchema = new Schema({
       required: true,
       minlength: 5
     },
+    googleUser: {
+      type: Boolean
+    },
   
     myChecklist: [
       {
