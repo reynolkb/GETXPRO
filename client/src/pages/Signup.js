@@ -41,7 +41,7 @@ function Signup(props) {
   };
 
   const responseGoogle = (response) => {
-    console.log(response);
+    console.log(response.profileObj);
   }
 
   const componentClicked = () => {
@@ -83,7 +83,7 @@ function Signup(props) {
           buttonText='Continue With Google'
           onSuccess={responseGoogle}
           onFailure={responseGoogle}
-          cookiePolicy={'sinlge_host_origin'}
+          cookiePolicy={'single_host_origin'}
         />
       </div>
       <h6 className='signup-form-text'>OR LOG IN WITH EMAIL</h6>
