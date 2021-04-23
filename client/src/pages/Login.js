@@ -35,7 +35,7 @@ function LoginUser(props) {
     };
 
     const responseGoogle = (response) => {
-      console.log(response);
+      console.log(response.fx.profileObj);
     }
 
     const componentClicked = () => {
@@ -77,7 +77,7 @@ function LoginUser(props) {
           buttonText='Continue With Google'
           onSuccess={responseGoogle}
           onFailure={responseGoogle}
-          cookiePolicy={'sinlge_host_origin'}
+          cookiePolicy={'single_host_origin'}
         />
       </div>
       <h6 className='login-form-text'>OR LOG IN WITH USERNAME</h6>
