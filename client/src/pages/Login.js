@@ -35,7 +35,20 @@ function LoginUser(props) {
     };
 
     const responseGoogle = (response) => {
-      console.log(response.fx.profileObj);
+      console.log(response.profileObj);
+      login({
+        variables: {
+          username: response.profileObj.googleId,
+          password: response.profileObj.googleId
+        }
+      })
+
+      const token = login.token;
+      Auth.login(token);
+    };
+
+    const responseGoogleFailure = () => {
+      console.log('Login With Google Failed');
     }
 
     const componentClicked = () => {
@@ -76,7 +89,7 @@ function LoginUser(props) {
           )}
           buttonText='Continue With Google'
           onSuccess={responseGoogle}
-          onFailure={responseGoogle}
+          onFailure={responseGoogleFailure}
           cookiePolicy={'single_host_origin'}
         />
       </div>

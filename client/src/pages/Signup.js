@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form'
 import { Link } from "react-router-dom";
 import { useMutation } from '@apollo/react-hooks';
 import Auth from "../utils/auth";
-import { ADD_USER } from "../utils/mutations";
+import { ADD_USER, ADD_GOOGLE_USER } from "../utils/mutations";
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebookF } from '@fortawesome/free-brands-svg-icons';
@@ -14,6 +14,7 @@ import GoogleLogin from 'react-google-login';
 function Signup(props) {
   const [formState, setFormState] = useState({ email: '', password: '' });
   const [addUser] = useMutation(ADD_USER);
+  const [addGoogleUser] = useMutation(ADD_GOOGLE_USER);
   const [passwordShown, setPasswordShown] = useState(false);
   const togglePasswordVisibility = () => {
     setPasswordShown(passwordShown ? false : true);
@@ -42,6 +43,17 @@ function Signup(props) {
 
   const responseGoogle = (response) => {
     console.log(response.profileObj);
+    addGoogleUser({
+      variables: {
+        email: response.profileObj.email,
+        password: response.profileObj.googleId,
+        username: response.profileObj.googleId,
+        googleUser: true
+      }
+    })
+
+    const token = addGoogleUser.token;
+    Auth.login(token);
   }
 
   const componentClicked = () => {
