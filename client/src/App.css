@@ -205,7 +205,7 @@ input {
   border: 1px solid black;
 }
 .checkbox:after {
-  content: ":heavy_check_mark:";
+  content: "✔️";
   display: none;
   color: black;
   font-size: 90%;

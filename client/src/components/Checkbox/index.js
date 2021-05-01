@@ -1,13 +1,13 @@
 import React from 'react'
 import { checked } from '../../App.css' 
 
-const Checkbox = (isChecked) => {
-    console.log(isChecked.isChecked);
+const Checkbox = ({isChecked, formal, camel}) => {
+    console.log(isChecked);
 
     return (
     <div>
-        <input type="checkbox" checked={isChecked.isChecked.passport} id="passport" name="passport"></input>
-        <label htmlFor="passport">homeInsurance</label>
+        <input type="checkbox" checked={isChecked} id={camel} name={camel}></input>
+        <label htmlFor={camel} className="checkbox-label">{formal}</label>
     </div>
     )
 };
