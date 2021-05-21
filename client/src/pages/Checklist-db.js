@@ -1,147 +1,86 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
-import { useQuery } from "@apollo/client";
+import { useQuery, useMutation } from '@apollo/client';
 import { useParams } from 'react-router-dom';
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 import Logo from './public/getxgo.svg';
 // import { useCheckboxState, Checkbox } from 'reakit/Checkbox';
-import { checked } from '../App.css'
-import {QUERY_ME} from '../utils/queries';
-import Checkbox from '../components/Checkbox/index'
+import { checked } from '../App.css';
+import { QUERY_ME } from '../utils/queries';
+import Checkbox from '../components/Checkbox/index';
+import { EDIT_CHECKLIST } from '../utils/mutations';
 
-const checklistItems = [
-    {
-        name:'Passport',
-        attributes:'passport',
-    },
-    {
-        name:'Home Insurance',
-        attributes:'homeInsurance'
-    },
-    {
-        name:'Auto Insurance',
-        attributes: 'autoInsurance'
-    },
-    {
-        name:'Medical Card',
-        attributes: 'medicalCard'
-    },
-    {
-        name: 'Social Security Card',
-        attributes: 'socialSecurityCard'
-    }
-]
-const personalItems = [
-    {
-        name: 'Cash',
-        attributes: 'cash'
-    },
-    {
-        name: 'Jacket',
-        attributes: 'jacket'
-    }
-]
-function Checklist (props)  {
-    const [formState, setFormState] = useState({ 
-        passport: false,
-        homeInsurance: false,
-        autoInsurance: false,
-        medicalCard: false,
-        socialSecurityCard: false,
-        cash: false,
-        jacket: false
-    });
+function Checklist(props) {
+	const [formState, setFormState] = useState();
+	const [isChecked, setIsChecked] = useState(false);
+	const { loading, data } = useQuery(QUERY_ME);
+	const [editChecklist] = useMutation(EDIT_CHECKLIST);
 
-    const handleCheckboxChange = () => {
-        // const { name, value } = event.target;
-        // console.log(document.getElementById(name).checked)
-        // if(document.getElementById(name).checked === true) {
-        //     setFormState({
-        //         ...formState,
-        //         [name]: true
-        //     });
-        // } else if (document.getElementById(name).checked === false) {
-        //     setFormState({
-        //         ...formState,
-        //         [name]: false
-        //     });
-        // }
-        // console.log(formState)
+	useEffect(() => {
+		if (loading) {
+			return <div>Loading User...</div>;
+		}
 
-        // let userChecklist = getUserChecklist();
-        // for (const [key, value] of Object.entries(userChecklist)) {
-        //     setFormState({
-        //         [key]: value
-        //     })
-        // }
-    }
+		// back end call to db		
+		function getUserChecklist() {
+			for (const [key, value] of Object.entries(data.me.myChecklist[0])) {
+				if (typeof value === 'string') {
+					delete data.me.myChecklist[0][key];
+				}
+			}
+	
+			// console.log(data.me.myChecklist[0]);
+			// returns object from db
+			return data.me.myChecklist[0];
+		}
 
-    const {loading, data} = useQuery(QUERY_ME);
-    if (loading) {
-        return <div>Loading User...</div>;
-    }
+		let formStateDB = getUserChecklist();
+		setFormState(formStateDB);
+	})
+	
+	if(formState) {
+		document.getElementById('autoInsurance').checked = formState.autoInsurance;
+	}
+	
+	function saveCheckbox() {
+		console.log('save button clicked');
 
-    function getUserChecklist() {
-        for (const [key, value] of Object.entries(data.me.myChecklist[0])) {
-            if(typeof value === "string") {
-              delete data.me.myChecklist[0][key];
-            } 
-        }
+		editChecklist({variables: {
+			autoInsurance: document.getElementById('autoInsurance').checked, 
+			passport: true,
+			homeInsurance: true,
+			medicalCard: true,
+			socialSecurityCard: true,
+			cash: true,
+			jacket: true
+		}})
+	}
 
-        console.log(data.me.myChecklist[0]);
-        return data.me.myChecklist[0];
-    }
-
-    const autoInsuranceFormal = 'Auto Insurance';
-    const autoInsuranceCamel = 'autoInsurance';
-
-    const cashFormal = 'Cash';
-    const cashCamel = 'cash';
-
-    return (
-        <div className="container my-1">
-            <div className='checklist-logo'>
-                <object className="logo" data={Logo}></object>
-            </div>
-            <div className='checklist-header'>
-                <h1 className='hello-user'>Hello, User</h1>
-                <p>Your checklist</p>
-            </div>
-            <form className='checklist-form'>
-                <h4 className='checklist-section-header'>Documents</h4>
-                <p className='checklist-instructions'>Make a copy of the list below and put inside of your GETXGO Kit</p>
-                {/* {checklistItems.map((checklistItem, index) => (
-                    <div key={index}>
-                        <label
-                        htmlFor={checklistItem.attributes}
-                        className='checkbox-label'
-                        >
-                            <Checkbox isChecked={getUserChecklist()}/>
-                            <span>{checklistItem.name}</span>
-                        </label>
-                    </div>
-                ))} */}
-                <Checkbox isChecked={getUserChecklist().autoInsurance} formal={autoInsuranceFormal} camel={autoInsuranceCamel} onChange={handleCheckboxChange}/>
-                <Checkbox isChecked={getUserChecklist().cash} formal={cashFormal} camel={cashCamel} onChange={handleCheckboxChange}/>
-                {/* <Checkbox isChecked={getUserChecklist().homeInsurance}/>
-                <Checkbox isChecked={getUserChecklist().jacket}/>
-                <Checkbox isChecked={getUserChecklist().medicalCard}/>
-                <Checkbox isChecked={getUserChecklist().passport}/>
-                <Checkbox isChecked={getUserChecklist().socialSecurityCard}/> */}
-                {/* <h4 className='checklist-section-header'>Personal Items</h4>
-                {personalItems.map((personalItem, index) => (
-                    <div key={index}>
-                        <label
-                        htmlFor={personalItem.attributes}
-                        className='checkbox-label'
-                        >
-                            <Checkbox isChecked={getUserChecklist()}/>
-                            <span>{personalItem.name}</span>
-                        </label>
-                    </div>
-                ))} */}
-            </form>
-        </div>
-    )
+	return (
+		<div className='container my-1'>
+			<div className='checklist-logo'>
+				<object className='logo' data={Logo}></object>
+			</div>
+			<div className='checklist-header'>
+				<h1 className='hello-user'>Hello, User</h1>
+				<p>Your checklist</p>
+			</div>
+			<form className='checklist-form'>
+				<h4 className='checklist-section-header'>
+					Documents
+				</h4>
+				<p className='checklist-instructions'>
+					Make a copy of the list below and put
+					inside of your GETXGO Kit
+				</p>
+				<div>
+					<input type="checkbox" id='autoInsurance' name='autoInsurance'></input>
+					<label htmlFor='autoInsurance' className="checkbox-label">Auto Insurance</label>
+				</div>
+				<br></br>
+				<button id="saveBtn" type="button" onClick={saveCheckbox}>Save</button>
+			</form>
+		</div>
+	);
 }
 export default Checklist;

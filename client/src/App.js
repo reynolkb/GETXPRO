@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { ApolloProvider } from '@apollo/react-hooks';
 import ApolloClient from 'apollo-boost';
 // import { StoreProvider } from './utils/GlobalState';
-import Checklist from './pages/Checklist';
+import Checklist from './pages/Checklist-db';
 
 // Pages
 import Home from './pages/Home';
